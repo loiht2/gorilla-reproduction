@@ -1,0 +1,51 @@
+{
+  "same_prompts_and_top3": true,
+  "generated_code_executed": false,
+  "models": [
+    {
+      "model": "gemma-4-31b-it",
+      "queries": 20,
+      "api_errors": 16,
+      "api_successes": 4,
+      "correct_calls": 3,
+      "function_correct": 4,
+      "correct_call_rate_all_queries": 0.15,
+      "correct_call_rate_api_successes": 0.75,
+      "status_counts": {
+        "API_ERROR": 16,
+        "CORRECT_CALL": 3,
+        "WRONG_ARGUMENTS": 1
+      }
+    },
+    {
+      "model": "Qwen3-8B",
+      "queries": 20,
+      "api_errors": 0,
+      "api_successes": 20,
+      "correct_calls": 4,
+      "function_correct": 10,
+      "correct_call_rate_all_queries": 0.2,
+      "correct_call_rate_api_successes": 0.2,
+      "status_counts": {
+        "CORRECT_CALL": 4,
+        "NO_MATCHING_API": 1,
+        "WRONG_ARGUMENTS": 6,
+        "INVALID_OUTPUT": 8,
+        "WRONG_FUNCTION": 1
+      }
+    }
+  ],
+  "configurations": {
+    "gemma-4-31b-it": {
+      "temperature": 0,
+      "maxOutputTokens": 4096
+    },
+    "Qwen3-8B": {
+      "temperature": 0,
+      "max_tokens": 3310,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    }
+  }
+}

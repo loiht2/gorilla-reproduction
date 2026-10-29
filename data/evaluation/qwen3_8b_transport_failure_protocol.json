@@ -1,0 +1,16 @@
+{
+  "model": "Qwen3-8B",
+  "temperature": 0,
+  "requested_max_tokens": 4096,
+  "output_budget_policy": "min(4096, context_limit - largest_prompt_count)",
+  "enable_thinking": false,
+  "same_prompt_builder_and_scorer_as_gemma": true,
+  "no_automatic_retries": true,
+  "sha256": {
+    "notebooks/gorilla_eval.py": "2af55cd0a14940db9833faaf29c0c3cc65c3f799059a2aace57c4dea70671e0a",
+    "notebooks/gorilla_vllm.py": "010eade2b8e1f18599cd44409d89f3a5b7ddfe13912e843ee10bb9677b213d2a",
+    "data/apis.json": "87e58d7fa593159bc510699e828035722bac3f3701442e7b63852dc9dcd86ff7",
+    "data/queries.json": "288f6e8017f5d5ae086bdb9d8b9939827959e9741ea3bd2050239e19192614e2",
+    "data/evaluation/answers.json": "246a980243d2d53f08bdf242166fc0e0414196f720265c80270ccab063512379"
+  }
+}

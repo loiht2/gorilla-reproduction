@@ -1,0 +1,138 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm
+  labels:
+    app: vllm
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: vllm
+  template:
+    metadata:
+      labels:
+        app: vllm
+    spec:
+      runtimeClassName: nvidia-legacy
+      # Avoid Service-generated variables colliding with vLLM configuration.
+      enableServiceLinks: false
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 60
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      # Complete the cold model download before application startup probes begin.
+      initContainers:
+      - name: download-model
+        image: docker.io/vllm/vllm-openai@sha256:6ee133356d49ed24cee03dd0cda3d3980279a11c107ce3e752c89e76540f41c9
+        imagePullPolicy: IfNotPresent
+        command:
+        - python3
+        - -c
+        args:
+        - 'from huggingface_hub import snapshot_download
+      
+          print("Preparing model cache", flush=True)
+      
+          snapshot_download(repo_id=''Qwen/Qwen3-8B'')
+      
+          print("Model cache ready", flush=True)
+      
+          '
+        env:
+        - name: HF_HOME
+          value: /cache/huggingface
+        - name: HF_HUB_DISABLE_PROGRESS_BARS
+          value: '1'
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: void
+        resources:
+          requests:
+            cpu: '1'
+            memory: 1Gi
+          limits:
+            cpu: '2'
+            memory: 4Gi
+        volumeMounts:
+        - name: model-cache
+          mountPath: /cache
+      containers:
+        - name: vllm
+          image: docker.io/vllm/vllm-openai@sha256:6ee133356d49ed24cee03dd0cda3d3980279a11c107ce3e752c89e76540f41c9
+          imagePullPolicy: IfNotPresent
+          args:
+            - --model
+            - Qwen/Qwen3-8B
+            - --served-model-name
+            - qwen3-8b
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8000"
+            - --dtype
+            - bfloat16
+            - --max-model-len
+            - "4096"
+            - --max-num-seqs
+            - "4"
+            - --gpu-memory-utilization
+            - "0.85"
+            - --tensor-parallel-size
+            - "1"
+          env:
+            - name: HF_HOME
+              value: /cache/huggingface
+            - name: VLLM_CACHE_ROOT
+              value: /cache/vllm
+          ports:
+            - name: http
+              containerPort: 8000
+          resources:
+            requests:
+              cpu: "4"
+              memory: 16Gi
+              nvidia.com/gpu: "1"
+              nvidia.com/gpumem-percentage: "100"
+              nvidia.com/gpucores: "100"
+            limits:
+              cpu: "8"
+              memory: 24Gi
+              nvidia.com/gpu: "1"
+              nvidia.com/gpumem-percentage: "100"
+              nvidia.com/gpucores: "100"
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 180
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 5
+          volumeMounts:
+            - name: model-cache
+              mountPath: /cache
+            - name: shared-memory
+              mountPath: /dev/shm
+      volumes:
+        - name: model-cache
+          persistentVolumeClaim:
+            claimName: vllm-model-cache
+        - name: shared-memory
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi

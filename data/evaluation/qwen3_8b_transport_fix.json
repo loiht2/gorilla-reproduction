@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-28",
+  "affected_run": "qwen3_8b_transport_failure_run.json",
+  "excluded_from_final_comparison": true,
+  "cause": "Undrained task-owned port-forward output filled its pipe and blocked forwarding. Independent health checks passed while the endpoint reported no active/queued inference.",
+  "evidence": {
+    "pipe_capacity_bytes": 65536,
+    "buffered_bytes_read": 64678,
+    "handling_connection_lines": 35,
+    "other_log_lines": 725,
+    "raw_logs_retained": false
+  },
+  "fix": "Continuously discard tunnel stdout/stderr after readiness; terminate and join its reader on exit.",
+  "verification": "A regression test sends 1 MiB of child output and verifies it exits without blocking; all 21 tests pass.",
+  "rerun_policy": "Repeat all 20 unchanged prompts once after the connection fix; preserve initial responses and errors as integration evidence."
+}

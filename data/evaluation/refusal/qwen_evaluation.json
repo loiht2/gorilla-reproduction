@@ -1,0 +1,192 @@
+{
+  "model": "Qwen3-8B",
+  "generation_config": {
+    "temperature": 0,
+    "max_tokens": 3287,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "summary": {
+    "queries": 10,
+    "api_errors": 0,
+    "api_successes": 10,
+    "exact_refusals": 3,
+    "normalized_refusals": 3,
+    "refusal_rate_all_queries": 0.3,
+    "refusal_rate_api_successes": 0.3,
+    "normalized_refusal_rate_all_queries": 0.3,
+    "normalized_refusal_rate_api_successes": 0.3,
+    "correct_calls": 0,
+    "outcome_counts": {
+      "REFUSAL": 3,
+      "REAL_BUT_UNAVAILABLE": 2,
+      "AVAILABLE_WRONG_API": 2,
+      "INVALID_OUTPUT": 2,
+      "UNKNOWN_API": 1
+    },
+    "real_but_unavailable_breakdown": {
+      "REMOVED_CORRECT_API": 2
+    }
+  },
+  "rows": [
+    {
+      "request_id": "req_002",
+      "outcome": "REFUSAL",
+      "exact_refusal": true,
+      "normalized_refusal": true,
+      "call_format_valid": false,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null,
+      "baseline_scorer_status": "NO_MATCHING_API"
+    },
+    {
+      "request_id": "req_004",
+      "outcome": "REAL_BUT_UNAVAILABLE",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": true,
+      "availability": "REMOVED_CORRECT_API",
+      "correct_call": false,
+      "api_identity": {
+        "identity": "KNOWN",
+        "alias": "resource_v1",
+        "class": "ResourceV1Api",
+        "method": "create_device_class",
+        "operation_id": "createResourceV1DeviceClass",
+        "path": "/apis/resource.k8s.io/v1/deviceclasses",
+        "http_method": "POST",
+        "form": "client_alias"
+      },
+      "selected_api": "createResourceV1DeviceClass",
+      "baseline_scorer_status": "OUT_OF_CONTEXT"
+    },
+    {
+      "request_id": "req_007",
+      "outcome": "REAL_BUT_UNAVAILABLE",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": true,
+      "availability": "REMOVED_CORRECT_API",
+      "correct_call": false,
+      "api_identity": {
+        "identity": "KNOWN",
+        "alias": "core_v1",
+        "class": "CoreV1Api",
+        "method": "create_namespaced_service",
+        "operation_id": "createCoreV1NamespacedService",
+        "path": "/api/v1/namespaces/{namespace}/services",
+        "http_method": "POST",
+        "form": "client_alias"
+      },
+      "selected_api": "createCoreV1NamespacedService",
+      "baseline_scorer_status": "OUT_OF_CONTEXT"
+    },
+    {
+      "request_id": "req_009",
+      "outcome": "AVAILABLE_WRONG_API",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": true,
+      "availability": "RETRIEVED",
+      "correct_call": false,
+      "api_identity": {
+        "identity": "KNOWN",
+        "alias": "core_v1",
+        "class": "CoreV1Api",
+        "method": "create_namespaced_pod",
+        "operation_id": "createCoreV1NamespacedPod",
+        "path": "/api/v1/namespaces/{namespace}/pods",
+        "http_method": "POST",
+        "form": "client_alias"
+      },
+      "selected_api": "createCoreV1NamespacedPod",
+      "baseline_scorer_status": "WRONG_FUNCTION"
+    },
+    {
+      "request_id": "req_010",
+      "outcome": "REFUSAL",
+      "exact_refusal": true,
+      "normalized_refusal": true,
+      "call_format_valid": false,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null,
+      "baseline_scorer_status": "NO_MATCHING_API"
+    },
+    {
+      "request_id": "req_012",
+      "outcome": "INVALID_OUTPUT",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": false,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": {
+        "identity": "NO_CALL"
+      },
+      "baseline_scorer_status": "INVALID_OUTPUT"
+    },
+    {
+      "request_id": "req_013",
+      "outcome": "AVAILABLE_WRONG_API",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": true,
+      "availability": "RETRIEVED",
+      "correct_call": false,
+      "api_identity": {
+        "identity": "KNOWN",
+        "alias": "apps_v1",
+        "class": "AppsV1Api",
+        "method": "patch_namespaced_deployment",
+        "operation_id": "patchAppsV1NamespacedDeployment",
+        "path": "/apis/apps/v1/namespaces/{namespace}/deployments/{name}",
+        "http_method": "PATCH",
+        "form": "client_alias"
+      },
+      "selected_api": "patchAppsV1NamespacedDeployment",
+      "baseline_scorer_status": "WRONG_FUNCTION"
+    },
+    {
+      "request_id": "req_014",
+      "outcome": "INVALID_OUTPUT",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": false,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": {
+        "identity": "NO_CALL"
+      },
+      "baseline_scorer_status": "INVALID_OUTPUT"
+    },
+    {
+      "request_id": "req_015",
+      "outcome": "REFUSAL",
+      "exact_refusal": true,
+      "normalized_refusal": true,
+      "call_format_valid": false,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null,
+      "baseline_scorer_status": "NO_MATCHING_API"
+    },
+    {
+      "request_id": "req_019",
+      "outcome": "UNKNOWN_API",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": true,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": {
+        "identity": "UNKNOWN",
+        "alias": "scheduling_v1",
+        "function_name": "read_namespaced_priority_class"
+      },
+      "baseline_scorer_status": "UNKNOWN_FUNCTION"
+    }
+  ]
+}

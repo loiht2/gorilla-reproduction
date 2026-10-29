@@ -1,0 +1,333 @@
+{
+  "model": "gemma-4-31b-it",
+  "generation_config": {
+    "temperature": 0,
+    "maxOutputTokens": 4096
+  },
+  "protocol": "sdk-ast-v1",
+  "fingerprint": "9b8c798f3167b222c9e02b3a6abc5e8ddd17f1c8eb39d4ac8290f66261a31247",
+  "started_at": "2026-10-28T11:14:39.046308+00:00",
+  "records": [
+    {
+      "request_id": "req_001",
+      "retrieved_apis": [
+        "createCoreV1NamespacedPod",
+        "patchCoreV1NamespacedService",
+        "readCoreV1NamespacedPodLog"
+      ],
+      "prompt_sha256": "a8c4690dcfd21240659892c9a04fe7917d421f2f04f438772c7d4c322267f4cb",
+      "http_status": null,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "CREDENTIAL_NETWORK_OR_RESPONSE_ERROR"
+    },
+    {
+      "request_id": "req_002",
+      "retrieved_apis": [
+        "listAppsV1NamespacedDeployment",
+        "createCoreV1NamespacedPod",
+        "readCoreV1NamespacedPod"
+      ],
+      "prompt_sha256": "2303f73b48849be1c0ac2e5fc3734d28b3a100cca37ac1f7a862af002b3fe96e",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_003",
+      "retrieved_apis": [
+        "readCoreV1NamespacedPod",
+        "createCoreV1NamespacedPod",
+        "deleteCoreV1NamespacedService"
+      ],
+      "prompt_sha256": "53ceccde030aeeeeb4a9e5c633d981feda9f21e9ddce4fdd314d6f52ef218626",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_004",
+      "retrieved_apis": [
+        "createResourceV1DeviceClass",
+        "listResourceV1DeviceClass",
+        "createSchedulingV1PriorityClass"
+      ],
+      "prompt_sha256": "77c9ebfa3709177bf2476f302f28167cfc09c5899818fb39aa36b65bb1bc6eb7",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_005",
+      "retrieved_apis": [
+        "listAppsV1NamespacedDeployment",
+        "listResourceV1DeviceClass",
+        "listCoreV1NamespacedPod"
+      ],
+      "prompt_sha256": "caaf38e654c3128476c8037c979c2f47ebe84888f997773538c0da248e61cb8b",
+      "http_status": 200,
+      "api_status": "OK",
+      "attempts": 1,
+      "text": "resource_v1.list_device_class()",
+      "finish_reason": "STOP",
+      "usage": {
+        "promptTokenCount": 702,
+        "candidatesTokenCount": 11,
+        "totalTokenCount": 983,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 702
+          }
+        ],
+        "thoughtsTokenCount": 270,
+        "serviceTier": "standard"
+      },
+      "model_version": "gemma-4-31b-it"
+    },
+    {
+      "request_id": "req_006",
+      "retrieved_apis": [
+        "createAppsV1NamespacedDeployment",
+        "createCoreV1NamespacedPod",
+        "patchCoreV1NamespacedService"
+      ],
+      "prompt_sha256": "ce364158d3f67fc6a7948ddba08fa4de38518847cc5a1cfdf7b3bf6b8e92c631",
+      "http_status": 200,
+      "api_status": "OK",
+      "attempts": 1,
+      "text": "apps_v1.create_namespaced_deployment(namespace=\"default\", body={\"apiVersion\": \"apps/v1\", \"kind\": \"Deployment\", \"metadata\": {\"name\": \"gorilla-audit-web\"}, \"spec\": {\"replicas\": 3, \"selector\": {\"matchLabels\": {\"app\": \"web\"}}, \"template\": {\"metadata\": {\"labels\": {\"app\": \"web\"}}, \"spec\": {\"containers\": [{\"name\": \"gorilla-audit-web\", \"image\": \"nginx:1.27\"}]}}}}, dry_run=\"All\", field_validation=\"Strict\")",
+      "finish_reason": "STOP",
+      "usage": {
+        "promptTokenCount": 785,
+        "candidatesTokenCount": 129,
+        "totalTokenCount": 1613,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 785
+          }
+        ],
+        "thoughtsTokenCount": 699,
+        "serviceTier": "standard"
+      },
+      "model_version": "gemma-4-31b-it"
+    },
+    {
+      "request_id": "req_007",
+      "retrieved_apis": [
+        "patchCoreV1NamespacedService",
+        "createCoreV1NamespacedService",
+        "createCoreV1NamespacedPod"
+      ],
+      "prompt_sha256": "5d4d3b4133a332930712e4c5d3cb2452e7cd3923a73c8b8110fcdafbf7753ccd",
+      "http_status": 200,
+      "api_status": "OK",
+      "attempts": 1,
+      "text": "core_v1.create_namespaced_service(namespace=\"default\", body={\"apiVersion\": \"v1\", \"kind\": \"Service\", \"metadata\": {\"name\": \"gorilla-audit-web-svc\"}, \"spec\": {\"selector\": {\"app\": \"web\"}, \"ports\": [{\"protocol\": \"TCP\", \"port\": 80, \"targetPort\": 8080}], \"type\": \"ClusterIP\"}}, dry_run=\"All\", field_validation=\"Strict\")",
+      "finish_reason": "STOP",
+      "usage": {
+        "promptTokenCount": 771,
+        "candidatesTokenCount": 103,
+        "totalTokenCount": 1522,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 771
+          }
+        ],
+        "thoughtsTokenCount": 648,
+        "serviceTier": "standard"
+      },
+      "model_version": "gemma-4-31b-it"
+    },
+    {
+      "request_id": "req_008",
+      "retrieved_apis": [
+        "createResourceV1NamespacedResourceClaim",
+        "listResourceV1DeviceClass",
+        "createResourceV1DeviceClass"
+      ],
+      "prompt_sha256": "6f8640247139873b069d5d76f5f6931e38e43c98f3e645a9cefc56808fc74533",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_009",
+      "retrieved_apis": [
+        "createBatchV1NamespacedJob",
+        "createCoreV1NamespacedPod",
+        "readBatchV1NamespacedJob"
+      ],
+      "prompt_sha256": "dfe0a1b014a706ac8b6cba69aa50cf4e2e61fc53683eec45f57a3cca5b2cba20",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_010",
+      "retrieved_apis": [
+        "createBatchV1NamespacedCronJob",
+        "createCoreV1NamespacedPod",
+        "patchCoreV1NamespacedService"
+      ],
+      "prompt_sha256": "1dd0417cdaa65d79cd0ee16e4ab501b086569f3582b5c1bc3ebc0d494d8c981c",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_011",
+      "retrieved_apis": [
+        "readCoreV1NamespacedPodLog",
+        "createCoreV1NamespacedPod",
+        "patchCoreV1NamespacedPod"
+      ],
+      "prompt_sha256": "0c20e6844adcbb10dfc6d4c8b057ea6e75c11378bb7fb63564d36aeb95b8498b",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_012",
+      "retrieved_apis": [
+        "patchAppsV1NamespacedDeploymentScale",
+        "createCoreV1NamespacedPod",
+        "patchAppsV1NamespacedDeployment"
+      ],
+      "prompt_sha256": "c50ce8cba7593e3bb6b269a159fe5fce4229eb8221e22a7220cae02b65a33f8f",
+      "http_status": null,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "CREDENTIAL_NETWORK_OR_RESPONSE_ERROR"
+    },
+    {
+      "request_id": "req_013",
+      "retrieved_apis": [
+        "readAppsV1NamespacedDeploymentScale",
+        "patchAppsV1NamespacedDeploymentScale",
+        "createCoreV1NamespacedPod"
+      ],
+      "prompt_sha256": "a859dbbdda9ae66bc1fea77436ac126d755b16020a66d1664aca0a027a582942",
+      "http_status": 200,
+      "api_status": "OK",
+      "attempts": 1,
+      "text": "apps_v1_merge.patch_namespaced_deployment_scale(name=\"coredns\", namespace=\"kube-system\", body={\"spec\": {\"replicas\": 5}}, dry_run=\"All\", field_validation=\"Strict\")",
+      "finish_reason": "STOP",
+      "usage": {
+        "promptTokenCount": 745,
+        "candidatesTokenCount": 50,
+        "totalTokenCount": 1330,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 745
+          }
+        ],
+        "thoughtsTokenCount": 535,
+        "serviceTier": "standard"
+      },
+      "model_version": "gemma-4-31b-it"
+    },
+    {
+      "request_id": "req_014",
+      "retrieved_apis": [
+        "listResourceV1DeviceClass",
+        "createResourceV1NamespacedResourceClaim",
+        "createResourceV1DeviceClass"
+      ],
+      "prompt_sha256": "56d689ec028fb919e15c89865a59e98e21d51b2fe32251f0dbfe65caa81d99b4",
+      "http_status": 503,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_015",
+      "retrieved_apis": [
+        "readCoreV1NamespacedPod",
+        "readResourceV1NamespacedResourceClaim",
+        "createCoreV1NamespacedPod"
+      ],
+      "prompt_sha256": "185a2474c7b021e41d0795a313fc967fa1c109c3800f8c3eb6eb2d9416a6e63e",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_016",
+      "retrieved_apis": [
+        "patchAppsV1NamespacedDeploymentScale",
+        "createCoreV1NamespacedPod",
+        "patchAppsV1NamespacedDeployment"
+      ],
+      "prompt_sha256": "c95c925018d23385ef79d975009a6270ab2b672bd1ffc2c4f4ff1f55b57b380a",
+      "http_status": null,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "CREDENTIAL_NETWORK_OR_RESPONSE_ERROR"
+    },
+    {
+      "request_id": "req_017",
+      "retrieved_apis": [
+        "readSchedulingV1PriorityClass",
+        "createSchedulingV1PriorityClass",
+        "createResourceV1DeviceClass"
+      ],
+      "prompt_sha256": "af7aa603743995901d391696ac32ff428ea881127c958a07abf174cd98632725",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_018",
+      "retrieved_apis": [
+        "patchCoreV1NamespacedService",
+        "readCoreV1NamespacedService",
+        "patchAppsV1NamespacedDeploymentScale"
+      ],
+      "prompt_sha256": "bc47ed8914143d6633ab58bb8c1140aaeb967ec85ea5ae8ec3b6247caafcd36a",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_019",
+      "retrieved_apis": [
+        "createSchedulingV1PriorityClass",
+        "readSchedulingV1PriorityClass",
+        "readCoreV1NamespacedPod"
+      ],
+      "prompt_sha256": "5ac594b08d9a3aebab8d702f0676ebaea865263700969fb5e5b68363d1be489b",
+      "http_status": 500,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "HTTP_ERROR"
+    },
+    {
+      "request_id": "req_020",
+      "retrieved_apis": [
+        "createCoreV1NamespacedPod",
+        "createResourceV1NamespacedResourceClaim",
+        "createResourceV1NamespacedResourceClaimTemplate"
+      ],
+      "prompt_sha256": "169cf84ff6ebbc150ae5a8635aa882a031a75a54f1d962e8f10b5c1c6360a2b5",
+      "http_status": null,
+      "api_status": "API_ERROR",
+      "attempts": 1,
+      "error_type": "CREDENTIAL_NETWORK_OR_RESPONSE_ERROR"
+    }
+  ],
+  "updated_at": "2026-10-28T11:24:19.238571+00:00"
+}

@@ -1,0 +1,1140 @@
+{
+  "metadata": {
+    "dataset_name": "Kubernetes single-operation API selection pilot",
+    "schema_version": "3.0.0",
+    "updated_on": "2026-10-28",
+    "kubernetes_version": "v1.35.2",
+    "api_catalog": "../apis.json",
+    "query_file": "../queries.json",
+    "request_count": 20,
+    "unique_correct_apis": 19,
+    "candidate_api_count": 30,
+    "usage": "Evaluator only. Never include answers, reference requests, rationale, audit records, or expectations in retriever/LLM inputs. Join on request_id after inference.",
+    "correctness_scope": "Single-operation semantics are explicit in each input. All writes are server dry-runs. Passing establishes the stated API outcome at audit time, not workload execution, image availability, device allocation, or gang scheduling.",
+    "api_catalog_sha256": "201615bc7e46a38620d99ae25a9dce82599789e520f494d3cf10564392178a6d",
+    "query_file_sha256": "9f75920a9f92feab293da7c7fca64aa701ed5b563c923cc6cce4f261199dda26",
+    "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE",
+    "validation_evidence_status": "Historical cluster-check outcomes are retained. Original raw validation files were deleted and could not be fully recovered; those checks cannot be independently reverified from this repository."
+  },
+  "answers": [
+    {
+      "request_id": "req_001",
+      "correct_api": "createCoreV1NamespacedPod",
+      "expected_api_operation": "Create Pod",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/api/v1/namespaces/default/pods",
+        "path_arguments": {
+          "namespace": "default"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "metadata": {
+            "name": "gorilla-audit-debug-shell",
+            "namespace": "default"
+          },
+          "spec": {
+            "containers": [
+              {
+                "name": "shell",
+                "image": "busybox:1.37.0",
+                "command": [
+                  "sleep",
+                  "3600"
+                ]
+              }
+            ],
+            "restartPolicy": "Never"
+          }
+        }
+      },
+      "rationale": "Standalone Pod + create-only semantics selects Pod collection POST; apply/upsert and controller-created Pods are excluded.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_002",
+      "correct_api": "listCoreV1NamespacedPod",
+      "expected_api_operation": "List Pod",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "GET",
+        "path": "/api/v1/namespaces/kube-system/pods",
+        "path_arguments": {
+          "namespace": "kube-system"
+        },
+        "query_arguments": {
+          "labelSelector": "k8s-app=kube-dns",
+          "watch": false
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body": null
+      },
+      "rationale": "Pod collection filtered within one namespace selects namespaced Pod list; a named-object response is insufficient.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Requested object, collection, or bounded non-streaming log representation is returned.",
+        "check_names": [
+          "http_success",
+          "response_schema",
+          "collection_representation"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_003",
+      "correct_api": "readCoreV1NamespacedPod",
+      "expected_api_operation": "Read Pod",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "GET",
+        "path": "/api/v1/namespaces/kube-system/pods/coredns-7d764666f9-4bfjs",
+        "path_arguments": {
+          "namespace": "kube-system",
+          "name": "coredns-7d764666f9-4bfjs"
+        },
+        "query_arguments": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body": null
+      },
+      "rationale": "Named Pod object including spec and status selects Pod read; list and log representations do not satisfy the request.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Requested object, collection, or bounded non-streaming log representation is returned.",
+        "check_names": [
+          "http_success",
+          "response_schema",
+          "named_object_identity"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_004",
+      "correct_api": "createResourceV1DeviceClass",
+      "expected_api_operation": "Create DeviceClass",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/apis/resource.k8s.io/v1/deviceclasses",
+        "path_arguments": {},
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "resource.k8s.io/v1",
+          "kind": "DeviceClass",
+          "metadata": {
+            "name": "gorilla-audit-gpu"
+          },
+          "spec": {
+            "selectors": [
+              {
+                "cel": {
+                  "expression": "device.driver == \"gpu.cnlab.ai\""
+                }
+              }
+            ]
+          }
+        }
+      },
+      "rationale": "Cluster-scoped DeviceClass creation with CEL selector selects DeviceClass POST; list cannot create it.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_005",
+      "correct_api": "listResourceV1DeviceClass",
+      "expected_api_operation": "List DeviceClass",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "GET",
+        "path": "/apis/resource.k8s.io/v1/deviceclasses",
+        "path_arguments": {},
+        "query_arguments": {
+          "watch": false
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body": null
+      },
+      "rationale": "Entire cluster-scoped DeviceClass collection selects list; no individual object is requested.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Requested object, collection, or bounded non-streaming log representation is returned.",
+        "check_names": [
+          "http_success",
+          "response_schema",
+          "collection_representation"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_006",
+      "correct_api": "createAppsV1NamespacedDeployment",
+      "expected_api_operation": "Create Deployment",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/apis/apps/v1/namespaces/default/deployments",
+        "path_arguments": {
+          "namespace": "default"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "metadata": {
+            "name": "gorilla-audit-web",
+            "namespace": "default"
+          },
+          "spec": {
+            "replicas": 3,
+            "selector": {
+              "matchLabels": {
+                "app": "web"
+              }
+            },
+            "template": {
+              "metadata": {
+                "labels": {
+                  "app": "web"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "name": "web",
+                    "image": "nginx:1.27"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "rationale": "Create-only Deployment with replicas, selector and template selects Deployment POST; Pod/Job creates produce different kinds, and apply is prohibited.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_007",
+      "correct_api": "createCoreV1NamespacedService",
+      "expected_api_operation": "Create Service",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/api/v1/namespaces/default/services",
+        "path_arguments": {
+          "namespace": "default"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "v1",
+          "kind": "Service",
+          "metadata": {
+            "name": "gorilla-audit-web-svc",
+            "namespace": "default"
+          },
+          "spec": {
+            "type": "ClusterIP",
+            "selector": {
+              "app": "web"
+            },
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 80,
+                "targetPort": 8080
+              }
+            ]
+          }
+        }
+      },
+      "rationale": "Create-only ClusterIP Service selects Service POST; named-resource patch/upsert is prohibited.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_008",
+      "correct_api": "createResourceV1NamespacedResourceClaim",
+      "expected_api_operation": "Create ResourceClaim",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/apis/resource.k8s.io/v1/namespaces/default/resourceclaims",
+        "path_arguments": {
+          "namespace": "default"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "resource.k8s.io/v1",
+          "kind": "ResourceClaim",
+          "metadata": {
+            "name": "gorilla-audit-training-gpu",
+            "namespace": "default"
+          },
+          "spec": {
+            "devices": {
+              "requests": [
+                {
+                  "name": "gpu",
+                  "exactly": {
+                    "deviceClassName": "gpu.cnlab.ai",
+                    "allocationMode": "ExactCount",
+                    "count": 1
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "rationale": "ResourceClaim object, exact-count device request and no allocation promise select ResourceClaim POST; template creation produces a different kind.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_009",
+      "correct_api": "createBatchV1NamespacedJob",
+      "expected_api_operation": "Create Job",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/apis/batch/v1/namespaces/default/jobs",
+        "path_arguments": {
+          "namespace": "default"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "batch/v1",
+          "kind": "Job",
+          "metadata": {
+            "name": "gorilla-audit-batch-check",
+            "namespace": "default"
+          },
+          "spec": {
+            "completions": 1,
+            "parallelism": 1,
+            "backoffLimit": 2,
+            "template": {
+              "spec": {
+                "containers": [
+                  {
+                    "name": "worker",
+                    "image": "busybox:1.37.0",
+                    "command": [
+                      "echo",
+                      "done"
+                    ]
+                  }
+                ],
+                "restartPolicy": "Never"
+              }
+            }
+          }
+        }
+      },
+      "rationale": "Job completions/parallelism/backoff and create-only semantics select Job POST; Pod/Deployment lack the required Job contract.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_010",
+      "correct_api": "createBatchV1NamespacedCronJob",
+      "expected_api_operation": "Create CronJob",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/apis/batch/v1/namespaces/default/cronjobs",
+        "path_arguments": {
+          "namespace": "default"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "batch/v1",
+          "kind": "CronJob",
+          "metadata": {
+            "name": "gorilla-audit-heartbeat",
+            "namespace": "default"
+          },
+          "spec": {
+            "schedule": "*/5 * * * *",
+            "timeZone": "Etc/UTC",
+            "jobTemplate": {
+              "spec": {
+                "template": {
+                  "spec": {
+                    "containers": [
+                      {
+                        "name": "worker",
+                        "image": "busybox:1.37.0",
+                        "command": [
+                          "date"
+                        ]
+                      }
+                    ],
+                    "restartPolicy": "Never"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "rationale": "CronJob schedule/time zone and nested job template select CronJob POST; Job create does not configure a periodic controller, and apply is prohibited.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_011",
+      "correct_api": "readCoreV1NamespacedPodLog",
+      "expected_api_operation": "Read logs Pod",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "GET",
+        "path": "/api/v1/namespaces/kube-system/pods/coredns-7d764666f9-4bfjs/log",
+        "path_arguments": {
+          "namespace": "kube-system",
+          "name": "coredns-7d764666f9-4bfjs"
+        },
+        "query_arguments": {
+          "container": "coredns",
+          "tailLines": 100,
+          "follow": false,
+          "timestamps": true,
+          "limitBytes": 4096
+        },
+        "headers": {
+          "Accept": "*/*"
+        },
+        "body": null
+      },
+      "rationale": "Bounded non-streaming container logs select Pod log GET, rather than Pod read/list; container/tail/timestamp/byte-limit arguments are explicit.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Requested object, collection, or bounded non-streaming log representation is returned.",
+        "check_names": [
+          "http_success",
+          "bounded_nonstreaming_log"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_012",
+      "correct_api": "patchAppsV1NamespacedDeployment",
+      "expected_api_operation": "Patch Deployment",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "PATCH",
+        "path": "/apis/apps/v1/namespaces/kube-system/deployments/coredns",
+        "path_arguments": {
+          "namespace": "kube-system",
+          "name": "coredns"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/strategic-merge-patch+json"
+        },
+        "body": {
+          "spec": {
+            "template": {
+              "spec": {
+                "containers": [
+                  {
+                    "name": "coredns",
+                    "image": "registry.k8s.io/coredns/coredns:v1.12.0"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "rationale": "Strategic merge patch of a Deployment container image selects Deployment PATCH; scale PATCH cannot change a Pod template.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Only the requested changes appear in the returned object; stored relevant fields remain unchanged.",
+        "check_names": [
+          "patch_target_exists",
+          "http_success",
+          "response_schema",
+          "exact_requested_patch_and_spec_preservation",
+          "annotation_preservation",
+          "patch_is_effective",
+          "identity_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_013",
+      "correct_api": "patchAppsV1NamespacedDeploymentScale",
+      "expected_api_operation": "Patch scale Deployment",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "PATCH",
+        "path": "/apis/apps/v1/namespaces/kube-system/deployments/coredns/scale",
+        "path_arguments": {
+          "namespace": "kube-system",
+          "name": "coredns"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/merge-patch+json"
+        },
+        "body": {
+          "spec": {
+            "replicas": 5
+          }
+        }
+      },
+      "rationale": "Explicit Deployment scale subresource and Scale response select scale PATCH; full Deployment PATCH has a different route/representation.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Only the requested changes appear in the returned object; stored relevant fields remain unchanged.",
+        "check_names": [
+          "patch_target_exists",
+          "http_success",
+          "response_schema",
+          "exact_requested_patch_and_spec_preservation",
+          "annotation_preservation",
+          "patch_is_effective",
+          "identity_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_014",
+      "correct_api": "createResourceV1NamespacedResourceClaimTemplate",
+      "expected_api_operation": "Create ResourceClaimTemplate",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/apis/resource.k8s.io/v1/namespaces/default/resourceclaimtemplates",
+        "path_arguments": {
+          "namespace": "default"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "resource.k8s.io/v1",
+          "kind": "ResourceClaimTemplate",
+          "metadata": {
+            "name": "gorilla-audit-worker-gpu",
+            "namespace": "default"
+          },
+          "spec": {
+            "spec": {
+              "devices": {
+                "requests": [
+                  {
+                    "name": "gpu",
+                    "exactly": {
+                      "deviceClassName": "gpu.cnlab.ai",
+                      "allocationMode": "ExactCount",
+                      "count": 1
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "rationale": "ResourceClaimTemplate with generated claim spec selects template POST; ResourceClaim POST does not create a template.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_015",
+      "correct_api": "readResourceV1NamespacedResourceClaim",
+      "expected_api_operation": "Read ResourceClaim",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "GET",
+        "path": "/apis/resource.k8s.io/v1/namespaces/test/resourceclaims/j1",
+        "path_arguments": {
+          "namespace": "test",
+          "name": "j1"
+        },
+        "query_arguments": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body": null
+      },
+      "rationale": "Named ResourceClaim object and optional status select claim GET; template GET is a different kind.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Requested object, collection, or bounded non-streaming log representation is returned.",
+        "check_names": [
+          "http_success",
+          "response_schema",
+          "named_object_identity"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_016",
+      "correct_api": "patchCoreV1NamespacedPod",
+      "expected_api_operation": "Patch Pod",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "PATCH",
+        "path": "/api/v1/namespaces/kube-system/pods/coredns-7d764666f9-4bfjs",
+        "path_arguments": {
+          "namespace": "kube-system",
+          "name": "coredns-7d764666f9-4bfjs"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/merge-patch+json"
+        },
+        "body": {
+          "metadata": {
+            "annotations": {
+              "audit.gorilla.example/check": "reviewed"
+            }
+          }
+        }
+      },
+      "rationale": "JSON merge patch of a named Pod annotation selects Pod PATCH; controller template patches do not modify this named Pod.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Only the requested changes appear in the returned object; stored relevant fields remain unchanged.",
+        "check_names": [
+          "patch_target_exists",
+          "http_success",
+          "response_schema",
+          "exact_requested_patch_and_spec_preservation",
+          "annotation_preservation",
+          "patch_is_effective",
+          "identity_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_017",
+      "correct_api": "createSchedulingV1PriorityClass",
+      "expected_api_operation": "Create PriorityClass",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/apis/scheduling.k8s.io/v1/priorityclasses",
+        "path_arguments": {},
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "scheduling.k8s.io/v1",
+          "kind": "PriorityClass",
+          "metadata": {
+            "name": "gorilla-audit-training"
+          },
+          "value": 10000,
+          "globalDefault": false,
+          "preemptionPolicy": "Never",
+          "description": "Non-preempting training priority"
+        }
+      },
+      "rationale": "Stable cluster-scoped PriorityClass creation with numeric priority and Never preemption selects PriorityClass POST; it does not request gang scheduling.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "serialization_equivalence": "PriorityClass.globalDefault false may be omitted by its v1.35.2 Go JSON encoder; omission has false semantics.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_018",
+      "correct_api": "patchCoreV1NamespacedService",
+      "expected_api_operation": "Patch Service",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "PATCH",
+        "path": "/api/v1/namespaces/kube-system/services/kube-dns",
+        "path_arguments": {
+          "namespace": "kube-system",
+          "name": "kube-dns"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/merge-patch+json"
+        },
+        "body": {
+          "spec": {
+            "selector": {
+              "k8s-app": "kube-dns-preview"
+            }
+          }
+        }
+      },
+      "rationale": "JSON merge patch changing a named Service selector while preserving ports selects Service PATCH; create/delete do not meet the operation contract.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Only the requested changes appear in the returned object; stored relevant fields remain unchanged.",
+        "check_names": [
+          "patch_target_exists",
+          "http_success",
+          "response_schema",
+          "exact_requested_patch_and_spec_preservation",
+          "annotation_preservation",
+          "patch_is_effective",
+          "identity_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_019",
+      "correct_api": "readSchedulingV1PriorityClass",
+      "expected_api_operation": "Read PriorityClass",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "GET",
+        "path": "/apis/scheduling.k8s.io/v1/priorityclasses/system-cluster-critical",
+        "path_arguments": {
+          "name": "system-cluster-critical"
+        },
+        "query_arguments": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body": null
+      },
+      "rationale": "Named stable PriorityClass object selects PriorityClass GET; no Workload or collection representation is requested.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available.",
+        "Named read/patch fixture must still exist; audit records its UID."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 200,
+        "postcondition": "Requested object, collection, or bounded non-streaming log representation is returned.",
+        "check_names": [
+          "http_success",
+          "response_schema",
+          "named_object_identity"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    },
+    {
+      "request_id": "req_020",
+      "correct_api": "createCoreV1NamespacedPod",
+      "expected_api_operation": "Create Pod",
+      "kubernetes_version": "v1.35.2",
+      "reference_request": {
+        "http_method": "POST",
+        "path": "/api/v1/namespaces/test/pods",
+        "path_arguments": {
+          "namespace": "test"
+        },
+        "query_arguments": {
+          "dryRun": "All",
+          "fieldValidation": "Strict"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "metadata": {
+            "name": "gorilla-audit-worker-0",
+            "namespace": "test",
+            "labels": {
+              "app": "training"
+            }
+          },
+          "spec": {
+            "priorityClassName": "system-cluster-critical",
+            "topologySpreadConstraints": [
+              {
+                "maxSkew": 1,
+                "topologyKey": "kubernetes.io/hostname",
+                "whenUnsatisfiable": "ScheduleAnyway",
+                "labelSelector": {
+                  "matchLabels": {
+                    "app": "training"
+                  }
+                }
+              }
+            ],
+            "resourceClaims": [
+              {
+                "name": "gpu",
+                "resourceClaimName": "j1"
+              }
+            ],
+            "containers": [
+              {
+                "name": "worker",
+                "image": "ubuntu:24.04",
+                "command": [
+                  "sleep",
+                  "3600"
+                ],
+                "resources": {
+                  "claims": [
+                    {
+                      "name": "gpu"
+                    }
+                  ]
+                }
+              }
+            ],
+            "restartPolicy": "Never"
+          }
+        }
+      },
+      "rationale": "Create-only Pod carrying priority class, topology spread and existing claim references selects Pod POST. References do not request creation of a PriorityClass, Workload or claim; apply/upsert is prohibited.",
+      "assumptions": [
+        "The observed v1.35.2 cluster and caller authorization remain available."
+      ],
+      "verification_contract": {
+        "scope": "Exact request; no namespace, name, body, or operation adaptation during verification.",
+        "success_status": 201,
+        "postcondition": "Every requested body field survives admission; named object remains absent.",
+        "check_names": [
+          "request_schema",
+          "create_target_absent",
+          "http_success",
+          "response_schema",
+          "all_requested_fields_preserved",
+          "no_persistence"
+        ]
+      },
+      "audit": {
+        "scope": "Historical validation context only; original measured reports are no longer available.",
+        "evidence_availability": "ORIGINAL_FILES_UNAVAILABLE"
+      }
+    }
+  ]
+}

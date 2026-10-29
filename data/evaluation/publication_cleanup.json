@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-29",
+  "purpose": "Prepare the repository for publication",
+  "recovery": {
+    "status": "NO_COMPLETE_BACKUP_FOUND",
+    "checked": [
+      "Git history availability",
+      "desktop trash",
+      "original temporary-directory pointers",
+      "temporary evidence snapshots"
+    ],
+    "available_fragments": "Public release OpenAPI and limited historical observations remain; no complete raw cluster-check reports were found. No replacement validation evidence was invented."
+  },
+  "removed_unavailable_reference_count": 106,
+  "historical_dataset_sha256": {
+    "data/apis.json": "87e58d7fa593159bc510699e828035722bac3f3701442e7b63852dc9dcd86ff7",
+    "data/queries.json": "288f6e8017f5d5ae086bdb9d8b9939827959e9741ea3bd2050239e19192614e2",
+    "data/evaluation/answers.json": "246a980243d2d53f08bdf242166fc0e0414196f720265c80270ccab063512379"
+  },
+  "current_dataset_sha256": {
+    "data/apis.json": "201615bc7e46a38620d99ae25a9dce82599789e520f494d3cf10564392178a6d",
+    "data/queries.json": "9f75920a9f92feab293da7c7fca64aa701ed5b563c923cc6cce4f261199dda26",
+    "data/evaluation/answers.json": "d5983258f56d1189040bd6b59877b3a6ad8c97cba48f2bd63b23bf3c037183cc"
+  },
+  "preserved_generation_and_local_file_sha256": {
+    "data/evaluation/gemma_4_31b_generation.json": "fd4dd2da2897b67bf04da7d3d1237fd734ae74d6059cd8f30ad9c53fec5be66e",
+    "data/evaluation/qwen3_8b_generation.json": "72144387c758e93052a829894f75f754a9c4873539d044ab7e75cb48936c6d81",
+    "data/evaluation/refusal/gemma_generation.json": "e772947384e48d2a5a9d4404447560b965691abf8f1783bd7d84f4a162a13bdd",
+    "data/evaluation/refusal/qwen_generation.json": "293854a5d852cfc54c18224be7e0f741252ee08826074002360ad06c523de88c",
+    "data/evaluation/refusal/trials.json": "d42bdbf8df76e45d8f5e7fac95b956addd12cba11d77c96e86898fb8c4e3d705",
+    "notebooks/vllm_connection.local.json": "5aec26f816f57a97addf723147a3428ce3431b80f0e868f3da04c2618753538e",
+    "deploy/vllm/service.yaml": "f4d510d7ee1435ba9cee71dc4fb3a02c99e2634a20a00acfb9b9ddd71837681b",
+    "deploy/vllm/deployment.yaml": "dac255eda0b2376d297b221c424131d927b02978f2d6142eb42936b817b6fb86",
+    "deploy/vllm/pvc.yaml": "11a23e528648494da5c511fe120c7953d37ef515875dc5df14f6d96cc0ac2486"
+  },
+  "semantic_checks": {
+    "instructions_identical": true,
+    "all_40_baseline_prompts_identical": true,
+    "all_baseline_scores_identical": true,
+    "all_10_rebuilt_removal_trials_identical": true
+  },
+  "limitations": "Historical cluster-check outcomes are retained. Original raw validation files were deleted and could not be fully recovered; those checks cannot be independently reverified from this repository.",
+  "note": "Historical run files retain their original dataset hashes. The current hashes differ because unavailable-source metadata was cleaned, not because the model inputs or reference calls changed.",
+  "credentials_and_interaction_log_unchanged": true
+}

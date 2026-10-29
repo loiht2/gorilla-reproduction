@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "query_count": 20,
+  "one_attempt_per_query": true,
+  "temperature": 0,
+  "generated_code_executed": false,
+  "kubernetes_requests_made": false,
+  "credential_in_artifacts": false,
+  "source_and_dataset_hashes_match": true,
+  "offline_evaluator_tests_passed": 14,
+  "reference_adapter_checks_passed": 20,
+  "sdk_method_checks_passed": 30,
+  "api_error_http_status_counts": {
+    "None": 4,
+    "500": 11,
+    "503": 1
+  },
+  "metrics": {
+    "queries": 20,
+    "api_errors": 16,
+    "api_successes": 4,
+    "correct_calls": 3,
+    "function_correct": 4,
+    "correct_call_rate_all_queries": 0.15,
+    "correct_call_rate_api_successes": 0.75,
+    "status_counts": {
+      "API_ERROR": 16,
+      "CORRECT_CALL": 3,
+      "WRONG_ARGUMENTS": 1
+    }
+  },
+  "limitations": "16 API errors leave only four scorable responses. Scores measure the documented AST reference-call contract, not runtime Kubernetes behavior or broad model quality."
+}

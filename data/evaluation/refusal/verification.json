@@ -1,0 +1,49 @@
+{
+  "verified_at": "2026-10-29T07:03:23.043175+00:00",
+  "status": "PASS",
+  "scope": "Offline retrieval, prompt, AST-score, artifact-integrity, and publication checks only. No new model requests or cluster operations.",
+  "historical_cluster_validation": "UNVERIFIED_FROM_ORIGINAL_FILES: raw cluster-check evidence is unavailable.",
+  "checks": {
+    "approved_removals_applied": true,
+    "instructions_and_reference_call_content_unchanged": true,
+    "generation_records_deployment_and_connection_file_unchanged": true,
+    "credentials_and_interaction_log_unchanged": true,
+    "current_dataset_hashes_match_plan": true,
+    "all_40_baseline_prompts_and_scores_unchanged": true,
+    "retrieval_recomputed_10_of_20_and_17_of_20": true,
+    "all_removal_trials_and_scores_reproduced": true,
+    "all_49_actual_failure_responses_preserved": true,
+    "notebook_executed_successfully_from_cache": true,
+    "no_deleted_directory_references_in_publishable_text": true,
+    "credential_value_absent_from_publishable_files": true,
+    "all_32_existing_offline_tests_pass": true
+  },
+  "publication_record": "../publication_cleanup.json",
+  "artifact_sha256": {
+    "data/evaluation/refusal/README.md": "ba2b4db12aef3edf741221391f8e5a872ea20c70ae89047e5483f404cfa1ce35",
+    "data/evaluation/refusal/baseline_prompts.json": "fe38104e8c1bf56327c7a891130a588330fd034047ecd687b8035143ec6efcd4",
+    "data/evaluation/refusal/failure_examples.json": "25e4ed20b06a682a23b7156a006eba848e98e99ec157d7f802711651d20107f8",
+    "data/evaluation/refusal/gemma_baseline_trace.json": "a5c005ffa5cac48dae962158f7cdc06548f86645315ff0afcb4723c1ee7a251d",
+    "data/evaluation/refusal/gemma_evaluation.json": "11173bc713ae93d37471ac0388d206463bccd981aad0615b0e6e6056927e47f6",
+    "data/evaluation/refusal/gemma_generation.json": "e772947384e48d2a5a9d4404447560b965691abf8f1783bd7d84f4a162a13bdd",
+    "data/evaluation/refusal/kubernetes_api_registry.json": "ddc1f471d2c980b35b7302db2d5404ac9c3c5dabf8640a041356b5e25b40d5e5",
+    "data/evaluation/refusal/originals/gorilla_reproduction.ipynb": "3d4ab9cb4014817de4469740c8102f9ca5525f2656400adb26741dc52e874c0f",
+    "data/evaluation/refusal/originals/sha256.json": "f5310a45166b94b1b420af001021ebccfa751d617c1b62b648041fa4738eb9f4",
+    "data/evaluation/refusal/plan.json": "3e8f668b601aa82b55b4f43a386da4da62acbdb32e3c78cbdb7a148704c52ed0",
+    "data/evaluation/refusal/plan_before_context_preflight.json": "3889bd6813db9b92147b972ffe45685b824e89b61844dcd716e837c046d0f72b",
+    "data/evaluation/refusal/qwen_baseline_trace.json": "fab6cb7a12b85ca530cfe4b100f6b9def115aca7aa770a6b70438ab1e12ad068",
+    "data/evaluation/refusal/qwen_context_preflight.json": "9c8a3a52949124675f2dde639f74fa6497c0e3baacb81bbeffb362a4c5745dab",
+    "data/evaluation/refusal/qwen_evaluation.json": "43e4f4898c48d069d08204bc6990f6b9e811852a9dc57bba9834fc1e04c004f8",
+    "data/evaluation/refusal/qwen_generation.json": "293854a5d852cfc54c18224be7e0f741252ee08826074002360ad06c523de88c",
+    "data/evaluation/refusal/retrieval_metrics.json": "2a248dbfe65bcc66646b35d8e7a676d7dec6d78ffacba504430509f24964298f",
+    "data/evaluation/refusal/summary.json": "00df33ef94d7ab3d7a0637d579393d21ef6805bcafca0ced242370c7df944eee",
+    "data/evaluation/refusal/trials.json": "d42bdbf8df76e45d8f5e7fac95b956addd12cba11d77c96e86898fb8c4e3d705"
+  },
+  "dataset_sha256": {
+    "data/apis.json": "201615bc7e46a38620d99ae25a9dce82599789e520f494d3cf10564392178a6d",
+    "data/queries.json": "9f75920a9f92feab293da7c7fca64aa701ed5b563c923cc6cce4f261199dda26",
+    "data/evaluation/answers.json": "d5983258f56d1189040bd6b59877b3a6ad8c97cba48f2bd63b23bf3c037183cc"
+  },
+  "generated_code_executed": false,
+  "cluster_resource_mutations": false
+}

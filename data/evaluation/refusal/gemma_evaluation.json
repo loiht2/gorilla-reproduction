@@ -1,0 +1,127 @@
+{
+  "model": "gemma-4-31b-it",
+  "generation_config": {
+    "temperature": 0,
+    "maxOutputTokens": 4096
+  },
+  "summary": {
+    "queries": 10,
+    "api_errors": 9,
+    "api_successes": 1,
+    "exact_refusals": 1,
+    "normalized_refusals": 1,
+    "refusal_rate_all_queries": 0.1,
+    "refusal_rate_api_successes": 1.0,
+    "normalized_refusal_rate_all_queries": 0.1,
+    "normalized_refusal_rate_api_successes": 1.0,
+    "correct_calls": 0,
+    "outcome_counts": {
+      "API_ERROR": 9,
+      "REFUSAL": 1
+    },
+    "real_but_unavailable_breakdown": {}
+  },
+  "rows": [
+    {
+      "request_id": "req_002",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_004",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_007",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_009",
+      "outcome": "REFUSAL",
+      "exact_refusal": true,
+      "normalized_refusal": true,
+      "call_format_valid": false,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null,
+      "baseline_scorer_status": "NO_MATCHING_API"
+    },
+    {
+      "request_id": "req_010",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_012",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_013",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_014",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_015",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    },
+    {
+      "request_id": "req_019",
+      "outcome": "API_ERROR",
+      "exact_refusal": false,
+      "normalized_refusal": false,
+      "call_format_valid": null,
+      "availability": null,
+      "correct_call": false,
+      "api_identity": null
+    }
+  ]
+}

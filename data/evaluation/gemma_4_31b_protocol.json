@@ -1,0 +1,13 @@
+{
+  "model": "gemma-4-31b-it",
+  "temperature": 0,
+  "protocol": "sdk-ast-v1",
+  "evaluation_contract": "Single retrieved SDK operation; literal path/query arguments and complete reference body, plus patch media. Ignore dictionary ordering; accept redundant namespace and omitted false watch/follow. No code execution.",
+  "api_error_policy": "One attempt per query in the initial run; record HTTP/network failures separately. No fallback model or automatic retry.",
+  "sha256": {
+    "data/apis.json": "87e58d7fa593159bc510699e828035722bac3f3701442e7b63852dc9dcd86ff7",
+    "data/queries.json": "288f6e8017f5d5ae086bdb9d8b9939827959e9741ea3bd2050239e19192614e2",
+    "data/evaluation/answers.json": "246a980243d2d53f08bdf242166fc0e0414196f720265c80270ccab063512379",
+    "notebooks/gorilla_eval.py": "2af55cd0a14940db9833faaf29c0c3cc65c3f799059a2aace57c4dea70671e0a"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "experiment": "independent leave-one-API-out refusal",
+  "created_at": "2026-10-28T12:07:36.745240+00:00",
+  "query_ids": [
+    "req_002",
+    "req_004",
+    "req_007",
+    "req_009",
+    "req_010",
+    "req_012",
+    "req_013",
+    "req_014",
+    "req_015",
+    "req_019"
+  ],
+  "selection_basis": "Coverage-based: nine positive resource types and create/read/list/patch, including a scale subresource. Fixed before withheld-API model calls; existing baseline results already existed. No withheld-API outcomes used for selection.",
+  "removal_policy": "Each trial independently starts from the original 30 records and excludes only that query’s verified correct_api, then fits a new TF-IDF vectorizer on the 29 descriptions. No cumulative removals.",
+  "retrieval": {
+    "stop_words": "english",
+    "ngram_range": [
+      1,
+      2
+    ],
+    "similarity": "cosine",
+    "tie_break": "stable original catalog order",
+    "k": 3
+  },
+  "models": [
+    "gemma-4-31b-it",
+    "Qwen3-8B"
+  ],
+  "prompt_policy": "Reuse gorilla_eval.make_prompt verbatim; only retrieved cards change. Do not disclose the exclusion or gold labels to either model.",
+  "settings_policy": "Keep each model’s baseline settings, including temperature 0 and Qwen non-thinking mode/output limit. Abort before generation if an unchanged Qwen prompt cannot fit.",
+  "attempt_policy": "One attempt per query per model, no automatic retries or fallback models. Preserve API errors separately.",
+  "primary_refusal": "HTTP success, complete generation, and response stripped of surrounding whitespace equals the bare token NO_MATCHING_API. A fence-normalized rate is reported separately.",
+  "availability_scope": "Availability means offered among the current three retrieved API descriptions. Also distinguish removed correct API, remaining-index-but-not-retrieved API, and real SDK API outside the original catalog. This is not a cluster feature-availability test.",
+  "source_sha256": {
+    "data/apis.json": "87e58d7fa593159bc510699e828035722bac3f3701442e7b63852dc9dcd86ff7",
+    "data/queries.json": "288f6e8017f5d5ae086bdb9d8b9939827959e9741ea3bd2050239e19192614e2",
+    "data/evaluation/answers.json": "246a980243d2d53f08bdf242166fc0e0414196f720265c80270ccab063512379",
+    "notebooks/gorilla_eval.py": "2af55cd0a14940db9833faaf29c0c3cc65c3f799059a2aace57c4dea70671e0a",
+    "notebooks/gorilla_vllm.py": "098252d5de39777454054acf6ef7e397ba54cafd7a1152b662f111fafeace022"
+  },
+  "model_settings": {
+    "gemma-4-31b-it": {
+      "temperature": 0,
+      "maxOutputTokens": 4096
+    },
+    "Qwen3-8B": {
+      "temperature": 0,
+      "max_tokens": 3310,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    }
+  },
+  "prepared_at": "2026-10-28T12:21:37.667928+00:00",
+  "refusal_helper_sha256": "bd7a2d3e954de497d923753faba94f488f600e9b1747b4de5783a38217130a64",
+  "registry_sha256": "ddc1f471d2c980b35b7302db2d5404ac9c3c5dabf8640a041356b5e25b40d5e5",
+  "trials_sha256": "d42bdbf8df76e45d8f5e7fac95b956addd12cba11d77c96e86898fb8c4e3d705"
+}

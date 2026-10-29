@@ -1,0 +1,170 @@
+{
+  "checked_on": "2026-10-28",
+  "pricing_checked_on": "2026-10-28",
+  "pricing_source": "https://ai.google.dev/gemini-api/docs/pricing",
+  "pricing_scope": "Standard text input/output rates, USD per million tokens. Output includes thinking. Free-tier eligibility and quotas vary; billing tier is not inferred from the key.",
+  "models": [
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "free_tier": true,
+      "paid_input_usd_per_million": null,
+      "paid_output_usd_per_million": null,
+      "access_status": "PASS",
+      "http_status": 200,
+      "temperature_zero_verified": true,
+      "returned_text": true
+    },
+    {
+      "model": "gemma-4-31b-it",
+      "free_tier": true,
+      "paid_input_usd_per_million": null,
+      "paid_output_usd_per_million": null,
+      "access_status": "PASS",
+      "http_status": 200,
+      "temperature_zero_verified": true,
+      "returned_text": true
+    },
+    {
+      "model": "gemini-2.5-flash-lite",
+      "free_tier": true,
+      "paid_input_usd_per_million": 0.1,
+      "paid_output_usd_per_million": 0.4,
+      "access_status": "API_ERROR",
+      "http_status": 404,
+      "temperature_zero_verified": false,
+      "returned_text": false
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "free_tier": true,
+      "paid_input_usd_per_million": 0.25,
+      "paid_output_usd_per_million": 1.5,
+      "access_status": "PASS",
+      "http_status": 200,
+      "temperature_zero_verified": true,
+      "returned_text": true
+    }
+  ],
+  "probe_history": {
+    "checked_on": "2026-10-28",
+    "models": [
+      {
+        "model": "gemma-4-26b-a4b-it",
+        "listed": true,
+        "temperature": 0,
+        "probe": "Reply with the single word OK.",
+        "benchmark_queries_sent": 0,
+        "http_status": 200,
+        "status": "PASS",
+        "temperature_zero_accepted": true,
+        "returned_text": false,
+        "usage": {
+          "promptTokenCount": 8,
+          "totalTokenCount": 37,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 8
+            }
+          ],
+          "thoughtsTokenCount": 29,
+          "serviceTier": "standard"
+        }
+      },
+      {
+        "model": "gemma-4-31b-it",
+        "listed": true,
+        "temperature": 0,
+        "probe": "Reply with the single word OK.",
+        "benchmark_queries_sent": 0,
+        "status": "API_ERROR",
+        "http_status": 500
+      },
+      {
+        "model": "gemini-2.5-flash-lite",
+        "listed": true,
+        "temperature": 0,
+        "probe": "Reply with the single word OK.",
+        "benchmark_queries_sent": 0,
+        "status": "API_ERROR",
+        "http_status": 404
+      },
+      {
+        "model": "gemini-3.1-flash-lite",
+        "listed": true,
+        "temperature": 0,
+        "probe": "Reply with the single word OK.",
+        "benchmark_queries_sent": 0,
+        "http_status": 200,
+        "status": "PASS",
+        "temperature_zero_accepted": true,
+        "returned_text": true,
+        "usage": {
+          "promptTokenCount": 8,
+          "candidatesTokenCount": 1,
+          "totalTokenCount": 9,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 8
+            }
+          ],
+          "serviceTier": "standard"
+        }
+      }
+    ],
+    "followup_probes": [
+      {
+        "model": "gemma-4-26b-a4b-it",
+        "temperature": 0,
+        "max_output_tokens": 256,
+        "benchmark_queries_sent": 0,
+        "http_status": 200,
+        "status": "PASS",
+        "temperature_zero_accepted": true,
+        "returned_text": true,
+        "usage": {
+          "promptTokenCount": 8,
+          "candidatesTokenCount": 1,
+          "totalTokenCount": 43,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 8
+            }
+          ],
+          "thoughtsTokenCount": 34,
+          "serviceTier": "standard"
+        }
+      },
+      {
+        "model": "gemma-4-31b-it",
+        "temperature": 0,
+        "max_output_tokens": 256,
+        "benchmark_queries_sent": 0,
+        "http_status": 200,
+        "status": "PASS",
+        "temperature_zero_accepted": true,
+        "returned_text": true,
+        "usage": {
+          "promptTokenCount": 8,
+          "candidatesTokenCount": 1,
+          "totalTokenCount": 43,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 8
+            }
+          ],
+          "thoughtsTokenCount": 34,
+          "serviceTier": "standard"
+        }
+      }
+    ]
+  },
+  "benchmark_queries_sent": 20,
+  "selected_model": "gemma-4-31b-it",
+  "correct_call_rate": 0.15,
+  "evaluation_status": "COMPLETE_WITH_API_ERRORS",
+  "evaluation_artifact": "gemma_4_31b_evaluation.json"
+}

@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "dataset_name": "Kubernetes single-operation API selection pilot",
+    "schema_version": "3.0.0",
+    "updated_on": "2026-10-28",
+    "kubernetes_version": "v1.35.2",
+    "request_count": 20,
+    "api_catalog": "apis.json",
+    "model_input": "Use only requests[*].input as per-query input; request_id is an opaque join key. No evaluator annotations are present.",
+    "benchmark_setup": "Independent single-operation requests against observed fixtures. All writes explicitly request server dry-run; outcomes concern API admission, not workload execution.",
+    "provenance": "Locally revised from user-provided requests to replace unavailable fixtures/features and make operation semantics explicit. Original raw validation files are no longer available."
+  },
+  "requests": [
+    {
+      "request_id": "req_001",
+      "input": "Create a standalone Pod named `gorilla-audit-debug-shell` in namespace `default`, with container `shell` running `busybox:1.37.0`, command `[\"sleep\",\"3600\"]`, and `restartPolicy: Never`. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_002",
+      "input": "List the Pod collection in namespace `kube-system`, filtered by label `k8s-app=kube-dns`. Return the collection, including each matching Pod, without watching."
+    },
+    {
+      "request_id": "req_003",
+      "input": "Retrieve the single Pod object named `coredns-7d764666f9-4bfjs` in namespace `kube-system`, including its metadata, spec, and status; return the named-object representation, not a list."
+    },
+    {
+      "request_id": "req_004",
+      "input": "Create a cluster-scoped DeviceClass named `gorilla-audit-gpu` with one CEL device selector: `device.driver == \"gpu.cnlab.ai\"`. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_005",
+      "input": "List the complete DeviceClass collection across the cluster, without watching. An empty collection is a valid result."
+    },
+    {
+      "request_id": "req_006",
+      "input": "Create Deployment `gorilla-audit-web` in namespace `default` with 3 replicas. Use container `gorilla-audit-web`, image `nginx:1.27`, and `app=web` for both the selector and Pod template labels. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_007",
+      "input": "Create ClusterIP Service `gorilla-audit-web-svc` in namespace `default`, selecting `app=web`, with TCP port 80 forwarding to targetPort 8080. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_008",
+      "input": "Create ResourceClaim `gorilla-audit-training-gpu` in namespace `default`. Include device request `gpu`, requesting exactly one device from DeviceClass `gpu.cnlab.ai`. Create only the claim. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_009",
+      "input": "Create Job `gorilla-audit-batch-check` in namespace `default`, with one completion, parallelism 1, and `backoffLimit: 2`. Use container `worker`, image `busybox:1.37.0`, command `[\"echo\",\"done\"]`, and `restartPolicy: Never`. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_010",
+      "input": "Create CronJob `gorilla-audit-heartbeat` in namespace `default`, scheduled every five minutes in `Etc/UTC`. Use container `worker`, image `busybox:1.37.0`, command `[\"date\"]`, and `restartPolicy: Never`. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_011",
+      "input": "Retrieve up to the last 100 log lines from container `coredns` in Pod `coredns-7d764666f9-4bfjs`, namespace `kube-system`. Do not stream. Include timestamps and cap the response at 4096 bytes."
+    },
+    {
+      "request_id": "req_012",
+      "input": "Use a strategic merge patch to change container `coredns` in Deployment `coredns`, namespace `kube-system`, to image `registry.k8s.io/coredns/coredns:v1.12.0`. Preserve all other containers and settings. Perform server-side dry-run with strict field validation, return the patched object, and leave the stored object unchanged."
+    },
+    {
+      "request_id": "req_013",
+      "input": "Use a merge patch on the scale subresource of Deployment `coredns` in namespace `kube-system` to set desired replicas to 5. Return the Scale representation. Perform server-side dry-run with strict field validation, return the patched object, and leave the stored object unchanged."
+    },
+    {
+      "request_id": "req_014",
+      "input": "Create ResourceClaimTemplate `gorilla-audit-worker-gpu` in namespace `default`. Its generated claims must contain device request `gpu`, requesting exactly one device from DeviceClass `gpu.cnlab.ai`. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_015",
+      "input": "Retrieve the single ResourceClaim object `j1` in namespace `test`, including its spec and any status information currently present. Return the named-object representation, not a list. An absent allocation is valid."
+    },
+    {
+      "request_id": "req_016",
+      "input": "Use a merge patch to add or set annotation `audit.gorilla.example/check` to `reviewed` on Pod `coredns-7d764666f9-4bfjs` in namespace `kube-system`. Preserve its spec and all other annotations. Perform server-side dry-run with strict field validation, return the patched object, and leave the stored object unchanged."
+    },
+    {
+      "request_id": "req_017",
+      "input": "Create a cluster-scoped `scheduling.k8s.io/v1` PriorityClass named `gorilla-audit-training`, with value 10000, globalDefault false, preemptionPolicy `Never`, and description `Non-preempting training priority`. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    },
+    {
+      "request_id": "req_018",
+      "input": "Service `kube-dns` in namespace `kube-system` has selector `{\"k8s-app\":\"kube-dns\"}`. Use a merge patch to change it to `{\"k8s-app\":\"kube-dns-preview\"}`, preserving ports and all other settings. Perform server-side dry-run with strict field validation, return the patched object, and leave the stored object unchanged."
+    },
+    {
+      "request_id": "req_019",
+      "input": "Retrieve the single native `scheduling.k8s.io/v1` PriorityClass object `system-cluster-critical`, including its numeric priority and preemption policy. Return the named-object representation, not a list."
+    },
+    {
+      "request_id": "req_020",
+      "input": "Create Pod `gorilla-audit-worker-0` in namespace `test`, with label `app=training` and priorityClassName `system-cluster-critical`. Reference existing ResourceClaim `j1` through local claim name `gpu`, and give container `worker` access to that claim. Use image `ubuntu:24.04`, command `[\"sleep\",\"3600\"]`, and restartPolicy `Never`. Add one topology spread constraint with maxSkew 1, topologyKey `kubernetes.io/hostname`, whenUnsatisfiable `ScheduleAnyway`, and label selector `app=training`. Use create-only semantics: fail if the name exists, do not apply or upsert. Perform server-side dry-run with strict field validation, return the admitted object, and persist nothing. This tests API admission only, not execution or allocation."
+    }
+  ]
+}

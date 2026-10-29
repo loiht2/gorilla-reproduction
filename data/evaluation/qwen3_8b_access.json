@@ -1,0 +1,26 @@
+{
+  "checked_on": "2026-10-28",
+  "model": "Qwen3-8B",
+  "pod_running": true,
+  "pod_ready": true,
+  "health_http_status": 200,
+  "served_model_identified": true,
+  "temperature_zero_verified": true,
+  "thinking_enabled": false,
+  "probe": {
+    "http_status": 200,
+    "text_returned": true,
+    "temperature": 0,
+    "enable_thinking": false,
+    "usage": {
+      "prompt_tokens": 19,
+      "total_tokens": 22,
+      "completion_tokens": 3,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    },
+    "finish_reason": "stop"
+  },
+  "connection_file": "../../notebooks/vllm_connection.local.json",
+  "cluster_resources_changed": false
+}

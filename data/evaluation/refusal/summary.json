@@ -1,0 +1,193 @@
+{
+  "retrieval": {
+    "baseline": {
+      "queries": 20,
+      "candidate_count": 30,
+      "top_1_correct": 10,
+      "top_3_correct": 17,
+      "top_1_accuracy": 0.5,
+      "top_3_accuracy": 0.85
+    },
+    "withheld": {
+      "queries": 10,
+      "candidate_count_per_query": 29,
+      "gold_top_1_hits": 0,
+      "gold_top_3_hits": 0,
+      "interpretation": "Gold recall is forced to zero by the intervention; this is not a general retrieval-accuracy estimate."
+    }
+  },
+  "baseline": {
+    "gemma-4-31b-it": {
+      "queries": 20,
+      "api_errors": 16,
+      "api_successes": 4,
+      "correct_calls": 3,
+      "function_correct": 4,
+      "correct_call_rate_all_queries": 0.15,
+      "correct_call_rate_api_successes": 0.75,
+      "status_counts": {
+        "API_ERROR": 16,
+        "CORRECT_CALL": 3,
+        "WRONG_ARGUMENTS": 1
+      },
+      "refusal_and_identity": {
+        "queries": 20,
+        "api_errors": 16,
+        "api_successes": 4,
+        "exact_refusals": 0,
+        "normalized_refusals": 0,
+        "refusal_rate_all_queries": 0.0,
+        "refusal_rate_api_successes": 0.0,
+        "normalized_refusal_rate_all_queries": 0.0,
+        "normalized_refusal_rate_api_successes": 0.0,
+        "correct_calls": 3,
+        "outcome_counts": {
+          "API_ERROR": 16,
+          "AVAILABLE_API": 4
+        },
+        "real_but_unavailable_breakdown": {}
+      }
+    },
+    "Qwen3-8B": {
+      "queries": 20,
+      "api_errors": 0,
+      "api_successes": 20,
+      "correct_calls": 4,
+      "function_correct": 10,
+      "correct_call_rate_all_queries": 0.2,
+      "correct_call_rate_api_successes": 0.2,
+      "status_counts": {
+        "CORRECT_CALL": 4,
+        "NO_MATCHING_API": 1,
+        "WRONG_ARGUMENTS": 6,
+        "INVALID_OUTPUT": 8,
+        "WRONG_FUNCTION": 1
+      },
+      "refusal_and_identity": {
+        "queries": 20,
+        "api_errors": 0,
+        "api_successes": 20,
+        "exact_refusals": 1,
+        "normalized_refusals": 1,
+        "refusal_rate_all_queries": 0.05,
+        "refusal_rate_api_successes": 0.05,
+        "normalized_refusal_rate_all_queries": 0.05,
+        "normalized_refusal_rate_api_successes": 0.05,
+        "correct_calls": 4,
+        "outcome_counts": {
+          "AVAILABLE_API": 13,
+          "REFUSAL": 1,
+          "UNKNOWN_API": 2,
+          "INVALID_OUTPUT": 4
+        },
+        "real_but_unavailable_breakdown": {}
+      }
+    }
+  },
+  "withheld": {
+    "gemma-4-31b-it": {
+      "queries": 10,
+      "api_errors": 9,
+      "api_successes": 1,
+      "exact_refusals": 1,
+      "normalized_refusals": 1,
+      "refusal_rate_all_queries": 0.1,
+      "refusal_rate_api_successes": 1.0,
+      "normalized_refusal_rate_all_queries": 0.1,
+      "normalized_refusal_rate_api_successes": 1.0,
+      "correct_calls": 0,
+      "outcome_counts": {
+        "API_ERROR": 9,
+        "REFUSAL": 1
+      },
+      "real_but_unavailable_breakdown": {}
+    },
+    "Qwen3-8B": {
+      "queries": 10,
+      "api_errors": 0,
+      "api_successes": 10,
+      "exact_refusals": 3,
+      "normalized_refusals": 3,
+      "refusal_rate_all_queries": 0.3,
+      "refusal_rate_api_successes": 0.3,
+      "normalized_refusal_rate_all_queries": 0.3,
+      "normalized_refusal_rate_api_successes": 0.3,
+      "correct_calls": 0,
+      "outcome_counts": {
+        "REFUSAL": 3,
+        "REAL_BUT_UNAVAILABLE": 2,
+        "AVAILABLE_WRONG_API": 2,
+        "INVALID_OUTPUT": 2,
+        "UNKNOWN_API": 1
+      },
+      "real_but_unavailable_breakdown": {
+        "REMOVED_CORRECT_API": 2
+      }
+    }
+  },
+  "model_settings": {
+    "baseline": {
+      "gemma-4-31b-it": {
+        "temperature": 0,
+        "maxOutputTokens": 4096
+      },
+      "Qwen3-8B": {
+        "temperature": 0,
+        "max_tokens": 3310,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      }
+    },
+    "withheld": {
+      "gemma-4-31b-it": {
+        "temperature": 0,
+        "maxOutputTokens": 4096
+      },
+      "Qwen3-8B": {
+        "temperature": 0,
+        "max_tokens": 3287,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      }
+    }
+  },
+  "query_selection": [
+    "req_002",
+    "req_004",
+    "req_007",
+    "req_009",
+    "req_010",
+    "req_012",
+    "req_013",
+    "req_014",
+    "req_015",
+    "req_019"
+  ],
+  "protocol_amendment": {
+    "reason": "Token-count preflight stopped before any Qwen generation; the longest rebuilt prompt cannot fit the baseline output allowance.",
+    "qwen_max_tokens_before": 3310,
+    "qwen_max_tokens_after": 3287,
+    "all_other_settings_unchanged": true,
+    "evidence": "qwen_context_preflight.json"
+  },
+  "generated_code_executed": false,
+  "cluster_resources_changed": false,
+  "definitions": {
+    "correct_call": "Frozen AST scorer: correct SDK function, retrieved membership, and verified selected arguments. No generated code execution.",
+    "primary_refusal": "Complete successful final answer, stripped of surrounding whitespace, equals bare NO_MATCHING_API.",
+    "conditional_denominator": "API-successful requests only. Incomplete successful generations remain in the denominator but never count as refusals.",
+    "unknown_api": "Named operation absent from the pinned Kubernetes 35.0.0 SDK / Kubernetes v1.35.2 REST registry. Not a claim about all third-party APIs.",
+    "real_but_unavailable": "Real operation absent from the three offered descriptions: removed correct API, still indexed but not retrieved, or outside the original 30. Does not mean disabled in the cluster.",
+    "format_vs_identity": "API identity is classified independently of literal-call format; ambiguous client bindings are unresolved, not invented APIs."
+  },
+  "limitations": [
+    "Ten coverage-selected queries, fixed before withheld runs; not a random sample. Existing baseline outcomes were already available.",
+    "Withheld gold retrieval accuracy is zero by construction, not an estimate of normal retrieval quality.",
+    "Qwen output cap differs by 23 tokens after pre-generation context counting; other settings and the prompt template are unchanged.",
+    "Baseline prompts are reconstructed exactly and checked against recorded hashes. Baseline provider HTTP envelopes and raw reasoning were not retained; only actual saved final answers are available.",
+    "One attempt per query/model; no automatic retry, model fallback, or fabricated replacement for API errors."
+  ],
+  "identical_prompts_between_models_per_condition": true
+}

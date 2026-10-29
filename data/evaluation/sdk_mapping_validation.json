@@ -1,0 +1,549 @@
+{
+  "sdk_version": "35.0.0",
+  "sources": {
+    "core_v1_api.py": {
+      "url": "https://raw.githubusercontent.com/kubernetes-client/python/v35.0.0/kubernetes/client/api/core_v1_api.py",
+      "sha256": "8a2cda2525c4d0bf619b633fc61e85e89edae211d3b9f12f49bc451d48bb7af0"
+    },
+    "apps_v1_api.py": {
+      "url": "https://raw.githubusercontent.com/kubernetes-client/python/v35.0.0/kubernetes/client/api/apps_v1_api.py",
+      "sha256": "5ee580ec2ca1b07693feb7b9b851b0a3bda78755dbfd7b52ce6bc71be3fbb999"
+    },
+    "batch_v1_api.py": {
+      "url": "https://raw.githubusercontent.com/kubernetes-client/python/v35.0.0/kubernetes/client/api/batch_v1_api.py",
+      "sha256": "71737c4e9e29556540e474c6d7ed6afff86ae3c6554a8ffd3b632b834efd1f55"
+    },
+    "resource_v1_api.py": {
+      "url": "https://raw.githubusercontent.com/kubernetes-client/python/v35.0.0/kubernetes/client/api/resource_v1_api.py",
+      "sha256": "e474914648ac730427f8c2259e41de50ebbf313dba2004fb8307b3944a5e6d75"
+    },
+    "scheduling_v1_api.py": {
+      "url": "https://raw.githubusercontent.com/kubernetes-client/python/v35.0.0/kubernetes/client/api/scheduling_v1_api.py",
+      "sha256": "fcd1e31220e74608cac3c46a872aec72766917797ec01e15001144143aa0ff8b"
+    },
+    "api_client.py": {
+      "url": "https://raw.githubusercontent.com/kubernetes-client/python/v35.0.0/kubernetes/client/api_client.py",
+      "sha256": "8fde713c9634b99dccd2cceab56628162617b0b2ad7647ddc6b30b5967f71a9f",
+      "default_headers_override_generated_headers": true
+    }
+  },
+  "checks": [
+    {
+      "api_name": "createCoreV1NamespacedPod",
+      "python_function": "core_v1.create_namespaced_pod",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "listCoreV1NamespacedPod",
+      "python_function": "core_v1.list_namespaced_pod",
+      "status": "PASS",
+      "required_arguments": [
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "pretty",
+        "allow_watch_bookmarks",
+        "_continue",
+        "field_selector",
+        "label_selector",
+        "limit",
+        "resource_version",
+        "resource_version_match",
+        "send_initial_events",
+        "timeout_seconds",
+        "watch"
+      ]
+    },
+    {
+      "api_name": "readCoreV1NamespacedPod",
+      "python_function": "core_v1.read_namespaced_pod",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "deleteCoreV1NamespacedPod",
+      "python_function": "core_v1.delete_namespaced_pod",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty",
+        "dry_run",
+        "grace_period_seconds",
+        "ignore_store_read_error_with_cluster_breaking_potential",
+        "orphan_dependents",
+        "propagation_policy",
+        "body"
+      ]
+    },
+    {
+      "api_name": "patchCoreV1NamespacedPod",
+      "python_function": "core_v1.patch_namespaced_pod",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation",
+        "force"
+      ]
+    },
+    {
+      "api_name": "readCoreV1NamespacedPodLog",
+      "python_function": "core_v1.read_namespaced_pod_log",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "container",
+        "follow",
+        "insecure_skip_tls_verify_backend",
+        "limit_bytes",
+        "pretty",
+        "previous",
+        "since_seconds",
+        "stream",
+        "tail_lines",
+        "timestamps"
+      ]
+    },
+    {
+      "api_name": "createAppsV1NamespacedDeployment",
+      "python_function": "apps_v1.create_namespaced_deployment",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "listAppsV1NamespacedDeployment",
+      "python_function": "apps_v1.list_namespaced_deployment",
+      "status": "PASS",
+      "required_arguments": [
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "pretty",
+        "allow_watch_bookmarks",
+        "_continue",
+        "field_selector",
+        "label_selector",
+        "limit",
+        "resource_version",
+        "resource_version_match",
+        "send_initial_events",
+        "timeout_seconds",
+        "watch"
+      ]
+    },
+    {
+      "api_name": "readAppsV1NamespacedDeployment",
+      "python_function": "apps_v1.read_namespaced_deployment",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "patchAppsV1NamespacedDeployment",
+      "python_function": "apps_v1.patch_namespaced_deployment",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation",
+        "force"
+      ]
+    },
+    {
+      "api_name": "readAppsV1NamespacedDeploymentScale",
+      "python_function": "apps_v1.read_namespaced_deployment_scale",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "patchAppsV1NamespacedDeploymentScale",
+      "python_function": "apps_v1.patch_namespaced_deployment_scale",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation",
+        "force"
+      ]
+    },
+    {
+      "api_name": "createCoreV1NamespacedService",
+      "python_function": "core_v1.create_namespaced_service",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "readCoreV1NamespacedService",
+      "python_function": "core_v1.read_namespaced_service",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "patchCoreV1NamespacedService",
+      "python_function": "core_v1.patch_namespaced_service",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation",
+        "force"
+      ]
+    },
+    {
+      "api_name": "deleteCoreV1NamespacedService",
+      "python_function": "core_v1.delete_namespaced_service",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty",
+        "dry_run",
+        "grace_period_seconds",
+        "ignore_store_read_error_with_cluster_breaking_potential",
+        "orphan_dependents",
+        "propagation_policy",
+        "body"
+      ]
+    },
+    {
+      "api_name": "createCoreV1NamespacedConfigMap",
+      "python_function": "core_v1.create_namespaced_config_map",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "readCoreV1NamespacedConfigMap",
+      "python_function": "core_v1.read_namespaced_config_map",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "createBatchV1NamespacedJob",
+      "python_function": "batch_v1.create_namespaced_job",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "readBatchV1NamespacedJob",
+      "python_function": "batch_v1.read_namespaced_job",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "createBatchV1NamespacedCronJob",
+      "python_function": "batch_v1.create_namespaced_cron_job",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "patchBatchV1NamespacedCronJob",
+      "python_function": "batch_v1.patch_namespaced_cron_job",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation",
+        "force"
+      ]
+    },
+    {
+      "api_name": "listResourceV1DeviceClass",
+      "python_function": "resource_v1.list_device_class",
+      "status": "PASS",
+      "required_arguments": [],
+      "valid_keyword_arguments": [
+        "pretty",
+        "allow_watch_bookmarks",
+        "_continue",
+        "field_selector",
+        "label_selector",
+        "limit",
+        "resource_version",
+        "resource_version_match",
+        "send_initial_events",
+        "timeout_seconds",
+        "watch"
+      ]
+    },
+    {
+      "api_name": "createResourceV1DeviceClass",
+      "python_function": "resource_v1.create_device_class",
+      "status": "PASS",
+      "required_arguments": [
+        "body"
+      ],
+      "valid_keyword_arguments": [
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "createResourceV1NamespacedResourceClaim",
+      "python_function": "resource_v1.create_namespaced_resource_claim",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "readResourceV1NamespacedResourceClaim",
+      "python_function": "resource_v1.read_namespaced_resource_claim",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "createResourceV1NamespacedResourceClaimTemplate",
+      "python_function": "resource_v1.create_namespaced_resource_claim_template",
+      "status": "PASS",
+      "required_arguments": [
+        "body",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "namespace",
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "readResourceV1NamespacedResourceClaimTemplate",
+      "python_function": "resource_v1.read_namespaced_resource_claim_template",
+      "status": "PASS",
+      "required_arguments": [
+        "name",
+        "namespace"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "namespace",
+        "pretty"
+      ]
+    },
+    {
+      "api_name": "createSchedulingV1PriorityClass",
+      "python_function": "scheduling_v1.create_priority_class",
+      "status": "PASS",
+      "required_arguments": [
+        "body"
+      ],
+      "valid_keyword_arguments": [
+        "body",
+        "pretty",
+        "dry_run",
+        "field_manager",
+        "field_validation"
+      ]
+    },
+    {
+      "api_name": "readSchedulingV1PriorityClass",
+      "python_function": "scheduling_v1.read_priority_class",
+      "status": "PASS",
+      "required_arguments": [
+        "name"
+      ],
+      "valid_keyword_arguments": [
+        "name",
+        "pretty"
+      ]
+    }
+  ],
+  "status": "PASS"
+}

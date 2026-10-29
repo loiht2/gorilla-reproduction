@@ -1,0 +1,262 @@
+{
+  "model": "Qwen3-8B",
+  "protocol": "sdk-ast-v1",
+  "generation_config": {
+    "temperature": 0,
+    "max_tokens": 3310,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "summary": {
+    "queries": 20,
+    "api_errors": 0,
+    "api_successes": 20,
+    "correct_calls": 4,
+    "function_correct": 10,
+    "correct_call_rate_all_queries": 0.2,
+    "correct_call_rate_api_successes": 0.2,
+    "status_counts": {
+      "CORRECT_CALL": 4,
+      "NO_MATCHING_API": 1,
+      "WRONG_ARGUMENTS": 6,
+      "INVALID_OUTPUT": 8,
+      "WRONG_FUNCTION": 1
+    }
+  },
+  "rows": [
+    {
+      "request_id": "req_001",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "CORRECT_CALL",
+      "function_correct": true,
+      "arguments_correct": true,
+      "correct_call": true,
+      "selected_api": "createCoreV1NamespacedPod",
+      "differing_argument_paths": []
+    },
+    {
+      "request_id": "req_002",
+      "http_status": 200,
+      "gold_in_top3": false,
+      "status": "NO_MATCHING_API",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_003",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "CORRECT_CALL",
+      "function_correct": true,
+      "arguments_correct": true,
+      "correct_call": true,
+      "selected_api": "readCoreV1NamespacedPod",
+      "differing_argument_paths": []
+    },
+    {
+      "request_id": "req_004",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "WRONG_ARGUMENTS",
+      "function_correct": true,
+      "arguments_correct": false,
+      "correct_call": false,
+      "selected_api": "createResourceV1DeviceClass",
+      "differing_argument_paths": [
+        "/body/spec/selectors/0/cel",
+        "/body/spec/selectors/0/device"
+      ]
+    },
+    {
+      "request_id": "req_005",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_006",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "WRONG_ARGUMENTS",
+      "function_correct": true,
+      "arguments_correct": false,
+      "correct_call": false,
+      "selected_api": "createAppsV1NamespacedDeployment",
+      "differing_argument_paths": [
+        "/body/dry_run",
+        "/body/field_validation",
+        "/body/spec/template/spec/containers/0/name",
+        "/dry_run",
+        "/field_validation"
+      ]
+    },
+    {
+      "request_id": "req_007",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_008",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "WRONG_ARGUMENTS",
+      "function_correct": true,
+      "arguments_correct": false,
+      "correct_call": false,
+      "selected_api": "createResourceV1NamespacedResourceClaim",
+      "differing_argument_paths": [
+        "/body/spec/deviceRequests",
+        "/body/spec/devices"
+      ]
+    },
+    {
+      "request_id": "req_009",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_010",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "WRONG_ARGUMENTS",
+      "function_correct": true,
+      "arguments_correct": false,
+      "correct_call": false,
+      "selected_api": "createBatchV1NamespacedCronJob",
+      "differing_argument_paths": [
+        "/body/dry_run",
+        "/body/field_validation",
+        "/body/spec/jobTemplate/spec/backoffLimit",
+        "/body/spec/schedule",
+        "/body/spec/timeZone",
+        "/dry_run",
+        "/field_validation"
+      ]
+    },
+    {
+      "request_id": "req_011",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "CORRECT_CALL",
+      "function_correct": true,
+      "arguments_correct": true,
+      "correct_call": true,
+      "selected_api": "readCoreV1NamespacedPodLog",
+      "differing_argument_paths": []
+    },
+    {
+      "request_id": "req_012",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_013",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "WRONG_ARGUMENTS",
+      "function_correct": true,
+      "arguments_correct": false,
+      "correct_call": false,
+      "selected_api": "patchAppsV1NamespacedDeploymentScale",
+      "differing_argument_paths": [
+        "/patch_content_type"
+      ]
+    },
+    {
+      "request_id": "req_014",
+      "http_status": 200,
+      "gold_in_top3": false,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_015",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "CORRECT_CALL",
+      "function_correct": true,
+      "arguments_correct": true,
+      "correct_call": true,
+      "selected_api": "readResourceV1NamespacedResourceClaim",
+      "differing_argument_paths": []
+    },
+    {
+      "request_id": "req_016",
+      "http_status": 200,
+      "gold_in_top3": false,
+      "status": "WRONG_FUNCTION",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false,
+      "selected_api": "patchAppsV1NamespacedDeploymentScale"
+    },
+    {
+      "request_id": "req_017",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_018",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "WRONG_ARGUMENTS",
+      "function_correct": true,
+      "arguments_correct": false,
+      "correct_call": false,
+      "selected_api": "patchCoreV1NamespacedService",
+      "differing_argument_paths": [
+        "/patch_content_type"
+      ]
+    },
+    {
+      "request_id": "req_019",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    },
+    {
+      "request_id": "req_020",
+      "http_status": 200,
+      "gold_in_top3": true,
+      "status": "INVALID_OUTPUT",
+      "function_correct": false,
+      "arguments_correct": false,
+      "correct_call": false
+    }
+  ],
+  "dataset_sha256": {
+    "data/apis.json": "87e58d7fa593159bc510699e828035722bac3f3701442e7b63852dc9dcd86ff7",
+    "data/queries.json": "288f6e8017f5d5ae086bdb9d8b9939827959e9741ea3bd2050239e19192614e2",
+    "data/evaluation/answers.json": "246a980243d2d53f08bdf242166fc0e0414196f720265c80270ccab063512379"
+  },
+  "evaluator_sha256": "2af55cd0a14940db9833faaf29c0c3cc65c3f799059a2aace57c4dea70671e0a",
+  "transport_sha256": "098252d5de39777454054acf6ef7e397ba54cafd7a1152b662f111fafeace022",
+  "generation_sha256": "72144387c758e93052a829894f75f754a9c4873539d044ab7e75cb48936c6d81"
+}

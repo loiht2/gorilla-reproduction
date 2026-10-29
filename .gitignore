@@ -1,0 +1,19 @@
+credentials
+llm.jsonl
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+notebooks/*.local.json
+!notebooks/vllm_connection.local.json
+notebooks/archive/
+/AGENTS.md
+/ AGENTS.md
+
+# Publish only the presentation PDF and PowerPoint.
+/slides/*
+!/slides/*.pdf
+!/slides/*.pptx

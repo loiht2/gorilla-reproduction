@@ -1,0 +1,38 @@
+{
+  "checked_on": "2026-10-28",
+  "status": "PASS",
+  "query_count": 20,
+  "successful_inference_requests": 20,
+  "api_errors": 0,
+  "same_prompts_and_top3_as_gemma": true,
+  "gemma_files_and_common_scorer_unchanged": true,
+  "temperature": 0,
+  "effective_output_limit": 3310,
+  "thinking_enabled": false,
+  "server_token_counts_verified": true,
+  "all_outputs_stopped_before_token_limit": true,
+  "pod_ready_after_run": true,
+  "cluster_resource_changes": false,
+  "generated_code_executed": false,
+  "google_key_exposed_or_forwarded": false,
+  "offline_tests_passed": 21,
+  "initial_connection_failure_run_preserved": true,
+  "evaluation_summary": {
+    "queries": 20,
+    "api_errors": 0,
+    "api_successes": 20,
+    "correct_calls": 4,
+    "function_correct": 10,
+    "correct_call_rate_all_queries": 0.2,
+    "correct_call_rate_api_successes": 0.2,
+    "status_counts": {
+      "CORRECT_CALL": 4,
+      "NO_MATCHING_API": 1,
+      "WRONG_ARGUMENTS": 6,
+      "INVALID_OUTPUT": 8,
+      "WRONG_FUNCTION": 1
+    }
+  },
+  "model_comparison": "model_comparison.json",
+  "limitations": "Small fixed dataset; strict AST reference-call agreement. Gemma has 16 API failures. Qwen uses non-thinking mode and a context-constrained output limit; this is not a controlled claim about overall model quality."
+}

@@ -1,0 +1,17 @@
+{
+  "baseline": {
+    "queries": 20,
+    "candidate_count": 30,
+    "top_1_correct": 10,
+    "top_3_correct": 17,
+    "top_1_accuracy": 0.5,
+    "top_3_accuracy": 0.85
+  },
+  "withheld": {
+    "queries": 10,
+    "candidate_count_per_query": 29,
+    "gold_top_1_hits": 0,
+    "gold_top_3_hits": 0,
+    "interpretation": "Gold recall is forced to zero by the intervention; this is not a general retrieval-accuracy estimate."
+  }
+}

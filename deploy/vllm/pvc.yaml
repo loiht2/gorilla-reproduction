@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vllm-model-cache
+  labels:
+    app: vllm
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # Use the cluster's default StorageClass.
+  resources:
+    requests:
+      storage: 50Gi

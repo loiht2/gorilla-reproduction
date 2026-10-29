@@ -1,0 +1,18 @@
+{
+  "context_limit": 4096,
+  "prompt_token_counts": {
+    "req_002": 583,
+    "req_004": 662,
+    "req_007": 705,
+    "req_009": 710,
+    "req_010": 809,
+    "req_012": 771,
+    "req_013": 674,
+    "req_014": 664,
+    "req_015": 557,
+    "req_019": 586
+  },
+  "baseline_max_tokens": 3310,
+  "largest_fitting_common_max_tokens": 3287,
+  "generation_requests_sent": 0
+}

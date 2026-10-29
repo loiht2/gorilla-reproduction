@@ -1,0 +1,7 @@
+{
+  "namespace": "default",
+  "pod": "vllm-55d6846b6c-thtgq",
+  "port": 8000,
+  "model": "qwen3-8b",
+  "max_model_len": 4096
+}

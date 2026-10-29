@@ -1,0 +1,22 @@
+{
+  "data/evaluation/model_access.json": "e75fe1be8ab773aef0b516466e67767975ee8a92a78ec2c4f9488aa32332c3ec",
+  "data/evaluation/model_comparison.json": "35caec81e3e52fc9627fa2568121a591666140e7c5b3b4cf965c56b5fde53d02",
+  "data/evaluation/qwen3_8b_transport_failure_protocol.json": "737624f883633f4183b996376b34824ac2ef0cab6f17a5393ab826ca176b87b6",
+  "data/evaluation/qwen3_8b_generation.json": "72144387c758e93052a829894f75f754a9c4873539d044ab7e75cb48936c6d81",
+  "data/evaluation/gemma_4_31b_verification.json": "56fb5a7ee17a4a0706f7c539b287c01d5552db243910496936fe7d6f94b00050",
+  "data/evaluation/qwen3_8b_verification.json": "aeaca748ddd80385dd04f89900ae76d8f1dd35036ebeaec41024e88667bf8f48",
+  "data/evaluation/sdk_mapping_validation.json": "4451d184a966925a1d56602fd31caf9bd8b6d7199bb84e875cc83de2655039a6",
+  "data/evaluation/qwen3_8b_access.json": "ab2004f4a10a564664ace85442c43b91fff7a6bef9a74071cc4235dc47908d4b",
+  "data/evaluation/answers.json": "246a980243d2d53f08bdf242166fc0e0414196f720265c80270ccab063512379",
+  "data/evaluation/qwen3_8b_evaluation.json": "61c57047454dfd26f18871649601321e3d235e3aa25c695a5798915fa607d151",
+  "data/evaluation/qwen3_8b_protocol.json": "2b9e07c5e1920b259b929db1a150beba4438a3fb77adfebe92cef510a149ae47",
+  "data/evaluation/gemma_4_31b_protocol.json": "e60e4fff5b1064dc7f8f8bbf23418e83ca54a802ee56d2b403396af6e44e2050",
+  "data/evaluation/qwen3_8b_transport_fix.json": "47fbe187341b021e32b646d6d32eade27556eb6e7e6e7b5174e4bafd7a81c7f0",
+  "data/evaluation/gemma_4_31b_evaluation.json": "74a92eab7dda4b6f05ff9533f9ab3feb15f495ca5f25bd56ca46954dde9566ea",
+  "data/evaluation/qwen3_8b_transport_failure_run.json": "5d1a4d7ad18f5a46b5fa42298d239fef05d1537b7d3fae7e5c175837876b5604",
+  "data/evaluation/gemma_4_31b_generation.json": "fd4dd2da2897b67bf04da7d3d1237fd734ae74d6059cd8f30ad9c53fec5be66e",
+  "data/apis.json": "87e58d7fa593159bc510699e828035722bac3f3701442e7b63852dc9dcd86ff7",
+  "data/queries.json": "288f6e8017f5d5ae086bdb9d8b9939827959e9741ea3bd2050239e19192614e2",
+  "notebooks/gorilla_eval.py": "2af55cd0a14940db9833faaf29c0c3cc65c3f799059a2aace57c4dea70671e0a",
+  "notebooks/gorilla_vllm.py": "098252d5de39777454054acf6ef7e397ba54cafd7a1152b662f111fafeace022"
+}
